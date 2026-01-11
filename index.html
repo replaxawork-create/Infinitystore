@@ -1,206 +1,194 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Infinity Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-    body{
-        margin:0;
-        font-family: Arial;
-        background:#0b0b0b;
-        color:white;
-    }
 
-    header{
-        background:#111;
-        text-align:center;
-        padding:20px;
-        font-size:25px;
-    }
+body{
+  margin:0;
+  background:#050505;
+  font-family: 'Segoe UI', Arial;
+  color:white;
+}
 
-    .container{
-        width:90%;
-        margin:auto;
-    }
+/* HEADER */
+.header{
+  text-align:center;
+  padding:18px;
+  font-size:22px;
+  font-weight:900;
+  background:black;
+  border-bottom:1px solid #111;
+}
 
-    .card{
-        background:#1b1b1b;
-        padding:15px;
-        border-radius:10px;
-        margin-top:15px;
-        border:1px solid #333;
-    }
+/* CONTENT */
+.container{
+  padding:15px;
+}
 
-    .button{
-        background:#7b00ff;
-        border:0;
-        padding:10px 15px;
-        border-radius:6px;
-        color:white;
-        cursor:pointer;
-    }
+/* PRODUCT CARD */
+.card{
+  background:linear-gradient(145deg,#0f0f0f,#060606);
+  border:1px solid #1c1c1c;
+  padding:18px;
+  border-radius:18px;
+  margin-bottom:20px;
+  box-shadow:0 0 35px rgba(155,31,232,.25);
+}
 
-    /* MODAL BOX */
-    .modal{
-        display:none;
-        position:fixed;
-        top:0;
-        left:0;
-        width:100%;
-        height:100%;
-        background:rgba(0,0,0,0.8);
-        justify-content:center;
-        align-items:center;
-        padding:15px;
-    }
+.title{
+  font-size:20px;
+  font-weight:900;
+}
 
-    .modal-box{
-        background:white;
-        color:black;
-        padding:20px;
-        border-radius:10px;
-        width:95%;
-        max-width:400px;
-    }
+.priceBox{
+  margin-top:10px;
+  background:#101010;
+  padding:10px;
+  border-radius:12px;
+  border:1px solid #1f1f1f;
+}
 
-    input{
-        width:100%;
-        padding:8px;
-        margin-top:5px;
-        margin-bottom:10px;
-        border-radius:5px;
-        border:1px solid #aaa;
-    }
+.buyBtn{
+  margin-top:12px;
+  background:#9b1fe8;
+  border:none;
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  color:white;
+  font-size:15px;
+  font-weight:700;
+}
 
-    .close{
-        background:red;
-        color:white;
-        border:0;
-        padding:5px 10px;
-        float:right;
-        cursor:pointer;
-    }
+/* BOTTOM SHEET */
+.sheet{
+  position:fixed;
+  left:0;
+  bottom:-100%;
+  width:100%;
+  background:#0c0c0c;
+  border-radius:20px 20px 0 0;
+  padding:18px;
+  border-top:1px solid #292929;
+  box-shadow:0 -10px 40px rgba(155,31,232,.3);
+  transition:0.35s;
+}
 
-    .telegram-btn{
-        position:fixed;
-        bottom:20px;
-        right:20px;
-        background:#0088cc;
-        color:white;
-        padding:15px;
-        border-radius:50%;
-        font-size:18px;
-        text-decoration:none;
-    }
+.dragBar{
+  width:50px;
+  height:5px;
+  background:#333;
+  border-radius:10px;
+  margin:0 auto 10px auto;
+}
+
+.amountBox{
+  background:#121212;
+  padding:10px;
+  border-radius:12px;
+  border:1px solid #222;
+  margin:10px 0;
+}
+
+img{
+  width:240px;
+  border-radius:12px;
+}
+
+input{
+  width:100%;
+  background:#0f0f0f;
+  border:1px solid #2e2e2e;
+  border-radius:12px;
+  padding:10px;
+  color:white;
+  margin-top:12px;
+}
+
+.submitBtn{
+  margin-top:12px;
+  background:#8b00ff;
+  border:none;
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  color:white;
+  font-size:15px;
+  font-weight:700;
+}
+
+.closeBtn{
+  font-size:25px;
+  float:right;
+  margin-top:-5px;
+}
 
 </style>
-
 </head>
+
 <body>
 
-<header>
-    <b>Infinity Store</b>
-</header>
+<div class="header">Infinity Store</div>
 
 <div class="container">
 
-    <div class="card">
-        <h2>Amazon Gift Card</h2>
-        <p>Voucher Value: ₹790</p>
-        <p>Offer Price: ₹249</p>
-        <button class="button" onclick="openModal('m1')">Buy Now</button>
+  <div class="card">
+    <div class="title">Amazon Gift Card</div>
+    <div class="priceBox">
+      Value: ₹790<br>
+      Offer: <b>₹249</b>
     </div>
+    <button class="buyBtn" onclick="openSheet(249)">Buy Now</button>
+  </div>
 
-    <div class="card">
-        <h2>Flipkart Gift Card</h2>
-        <p>Voucher Value: ₹1000</p>
-        <p>Offer Price: ₹399</p>
-        <button class="button" onclick="openModal('m2')">Buy Now</button>
+  <div class="card">
+    <div class="title">Flipkart Gift Card</div>
+    <div class="priceBox">
+      Value: ₹1000<br>
+      Offer: <b>₹399</b>
     </div>
+    <button class="buyBtn" onclick="openSheet(399)">Buy Now</button>
+  </div>
 
 </div>
 
-<!-- IDENTITY MODAL -->
-<div class="modal" id="m1">
-<div class="modal-box">
-<button class="close" onclick="closeModal('m1')">X</button>
-<h2>Verify Identity</h2>
+<!-- Payment Bottom Sheet -->
+<div class="sheet" id="sheet">
+  <div class="dragBar"></div>
+  <span class="closeBtn" onclick="closeSheet()">✖</span>
 
-<input type="text" placeholder="Full Name">
-<input type="email" placeholder="Email">
-<input type="tel" placeholder="WhatsApp Number">
+  <h2>Complete Payment</h2>
+  <p>Scan QR using any UPI Scanner</p>
 
-<button class="button" onclick="goPayment()">Submit</button>
-</div>
-</div>
+  <!-- YOUR QR -->
+  <img src="YOUR_QR_IMAGE_LINK">
 
-<div class="modal" id="m2">
-<div class="modal-box">
-<button class="close" onclick="closeModal('m2')">X</button>
-<h2>Verify Identity</h2>
+  <div class="amountBox">
+    Pay: <b id="amountText"></b>
+  </div>
 
-<input type="text" placeholder="Full Name">
-<input type="email" placeholder="Email">
-<input type="tel" placeholder="WhatsApp Number">
+  <label>Upload Payment Proof</label>
+  <input type="file">
 
-<button class="button" onclick="goPayment()">Submit</button>
-</div>
+  <button class="submitBtn">Submit Proof</button>
 </div>
 
-<!-- PAYMENT MODAL -->
-<div class="modal" id="paymentBox">
-<div class="modal-box">
-<button class="close" onclick="closeModal('paymentBox')">X</button>
-
-<h2>Complete Payment</h2>
-
-<p>UPI ID: yourupi@bank</p>
-<p>Amount: Auto Assigned</p>
-
-<img src="https://via.placeholder.com/200" width="100%" style="border-radius:10px">
-
-<br><br>
-<b>Upload Payment Proof</b>
-<input type="file">
-
-<button class="button" onclick="alert('Payment Submitted!')">
-Submit Proof
-</button>
-
-</div>
-</div>
-
-<!-- SUPPORT SECTION -->
-<div class="container">
-<div class="card">
-<h2>Support Help</h2>
-<p>If you need help, contact support.</p>
-<button class="button">Open Support</button>
-</div>
-</div>
-
-<!-- TELEGRAM FLOAT BUTTON -->
-<a href="YOUR_TELEGRAM_URL" class="telegram-btn">TG</a>
 
 <script>
 
-function openModal(id){
-    document.getElementById(id).style.display="flex";
+function openSheet(amount){
+  document.getElementById("sheet").style.bottom = "0px";
+  document.getElementById("amountText").innerText = "₹" + amount;
 }
 
-function closeModal(id){
-    document.getElementById(id).style.display="none";
-}
-
-function goPayment(){
-    closeModal('m1');
-    closeModal('m2');
-    openModal('paymentBox');
+function closeSheet(){
+  document.getElementById("sheet").style.bottom = "-100%";
 }
 
 </script>
 
 </body>
-  </html>
+</html>
