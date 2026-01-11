@@ -1,193 +1,159 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Infinity Store</title>
+<title>Elite Gift Store</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+
 <style>
-
 body{
-  margin:0;
-  background:#050505;
-  font-family: 'Segoe UI', Arial;
-  color:white;
+ background:#070B18;
+ font-family:'Poppins',sans-serif;
+ margin:0;
+ color:white;
+ overflow-x:hidden;
 }
 
-/* HEADER */
 .header{
-  text-align:center;
-  padding:18px;
-  font-size:22px;
-  font-weight:900;
-  background:black;
-  border-bottom:1px solid #111;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:15px 20px;
 }
 
-/* CONTENT */
-.container{
-  padding:15px;
-}
-
-/* PRODUCT CARD */
-.card{
-  background:linear-gradient(145deg,#0f0f0f,#060606);
-  border:1px solid #1c1c1c;
-  padding:18px;
-  border-radius:18px;
-  margin-bottom:20px;
-  box-shadow:0 0 35px rgba(155,31,232,.25);
+.logo{
+ font-size:22px;
+ font-weight:700;
 }
 
 .title{
-  font-size:20px;
-  font-weight:900;
+ text-align:center;
+ margin-top:10px;
 }
 
-.priceBox{
-  margin-top:10px;
-  background:#101010;
-  padding:10px;
-  border-radius:12px;
-  border:1px solid #1f1f1f;
+.title h1{
+ font-size:32px;
+}
+
+.card{
+ background:#0E1530;
+ margin:18px;
+ padding:18px;
+ border-radius:22px;
+ box-shadow:0 0 40px rgba(0,0,0,0.6);
+ transition:.3s;
+}
+
+.card:hover{
+ transform:scale(1.02);
+ box-shadow:0 0 60px rgba(88,70,255,0.5);
+}
+
+.price{
+ font-size:28px;
+ font-weight:700;
+ margin-top:8px;
 }
 
 .buyBtn{
-  margin-top:12px;
-  background:#9b1fe8;
-  border:none;
-  width:100%;
-  padding:12px;
-  border-radius:12px;
-  color:white;
-  font-size:15px;
-  font-weight:700;
+ background:linear-gradient(135deg,#5A4BFF,#7D5CFF);
+ padding:12px 20px;
+ border-radius:50px;
+ border:none;
+ color:white;
+ float:right;
+ font-weight:600;
 }
 
-/* BOTTOM SHEET */
-.sheet{
-  position:fixed;
-  left:0;
-  bottom:-100%;
-  width:100%;
-  background:#0c0c0c;
-  border-radius:20px 20px 0 0;
-  padding:18px;
-  border-top:1px solid #292929;
-  box-shadow:0 -10px 40px rgba(155,31,232,.3);
-  transition:0.35s;
+.buyBtn:active{
+ transform:scale(.95);
 }
 
-.dragBar{
-  width:50px;
-  height:5px;
-  background:#333;
-  border-radius:10px;
-  margin:0 auto 10px auto;
+/* MODAL */
+.modal{
+ position:fixed;
+ top:0;
+ left:0;
+ width:100%;
+ height:100%;
+ background:rgba(0,0,0,.7);
+ display:none;
+ justify-content:center;
+ align-items:center;
 }
 
-.amountBox{
-  background:#121212;
-  padding:10px;
-  border-radius:12px;
-  border:1px solid #222;
-  margin:10px 0;
+.modalBox{
+ background:#0E1530;
+ padding:25px;
+ border-radius:25px;
+ width:85%;
+ text-align:center;
+ box-shadow:0 0 50px rgba(88,70,255,0.5);
 }
 
-img{
-  width:240px;
-  border-radius:12px;
+.modal img{
+ width:230px;
+ border-radius:15px;
 }
 
-input{
-  width:100%;
-  background:#0f0f0f;
-  border:1px solid #2e2e2e;
-  border-radius:12px;
-  padding:10px;
-  color:white;
-  margin-top:12px;
+.close{
+ background:red;
+ padding:10px 18px;
+ border-radius:50px;
+ border:none;
+ margin-top:10px;
+ color:white;
 }
-
-.submitBtn{
-  margin-top:12px;
-  background:#8b00ff;
-  border:none;
-  width:100%;
-  padding:12px;
-  border-radius:12px;
-  color:white;
-  font-size:15px;
-  font-weight:700;
-}
-
-.closeBtn{
-  font-size:25px;
-  float:right;
-  margin-top:-5px;
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="header">Infinity Store</div>
-
-<div class="container">
-
-  <div class="card">
-    <div class="title">Amazon Gift Card</div>
-    <div class="priceBox">
-      Value: ₹790<br>
-      Offer: <b>₹249</b>
-    </div>
-    <button class="buyBtn" onclick="openSheet(249)">Buy Now</button>
-  </div>
-
-  <div class="card">
-    <div class="title">Flipkart Gift Card</div>
-    <div class="priceBox">
-      Value: ₹1000<br>
-      Offer: <b>₹399</b>
-    </div>
-    <button class="buyBtn" onclick="openSheet(399)">Buy Now</button>
-  </div>
-
+<div class="header">
+ <div class="logo">Elite Store</div>
 </div>
 
-<!-- Payment Bottom Sheet -->
-<div class="sheet" id="sheet">
-  <div class="dragBar"></div>
-  <span class="closeBtn" onclick="closeSheet()">✖</span>
-
-  <h2>Complete Payment</h2>
-  <p>Scan QR using any UPI Scanner</p>
-
-  <!-- YOUR QR -->
-  <img src="https://raw.githubusercontent.com/replaxawork-create/Infinitystore/main/IMG-20260110-WA0761.jpg">
-
-  <div class="amountBox">
-    Pay: <b id="amountText"></b>
-  </div>
-
-  <label>Upload Payment Proof</label>
-  <input type="file">
-
-  <button class="submitBtn">Submit Proof</button>
+<div class="title">
+ <h1>Elite Gift Store.</h1>
+ <p>Premium Gift Cards & Digital Vouchers</p>
 </div>
 
+<!-- PRODUCT CARDS -->
+<div class="card">
+ <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" width="45">
+ <h2>Amazon Gift Card</h2>
+ <small>Value ₹1000</small>
+ <div class="price">₹249</div>
+ <button class="buyBtn" onclick="openPay()">Buy →</button>
+</div>
+
+<div class="card">
+ <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" width="45">
+ <h2>Amazon Gift Card</h2>
+ <small>Value ₹1500</small>
+ <div class="price">₹450</div>
+ <button class="buyBtn" onclick="openPay()">Buy →</button>
+</div>
+
+<!-- PAYMENT POPUP -->
+<div class="modal" id="payModal">
+ <div class="modalBox">
+  <h2>Payment Protocol</h2>
+  <img src="YOUR_QR.png">
+  <h1>₹199</h1>
+  <button class="close" onclick="closePay()">Close</button>
+ </div>
+</div>
 
 <script>
-
-function openSheet(amount){
-  document.getElementById("sheet").style.bottom = "0px";
-  document.getElementById("amountText").innerText = "₹" + amount;
+function openPay(){
+ document.getElementById("payModal").style.display="flex";
 }
 
-function closeSheet(){
-  document.getElementById("sheet").style.bottom = "-100%";
+function closePay(){
+ document.getElementById("payModal").style.display="none";
 }
-
 </script>
 
 </body>
