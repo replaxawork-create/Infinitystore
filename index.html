@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infinity Store</title>
+
+<style>
+    body{
+        margin:0;
+        font-family: Arial;
+        background:#0b0b0b;
+        color:white;
+    }
+
+    header{
+        background:#111;
+        text-align:center;
+        padding:20px;
+        font-size:25px;
+    }
+
+    .container{
+        width:90%;
+        margin:auto;
+    }
+
+    .card{
+        background:#1b1b1b;
+        padding:15px;
+        border-radius:10px;
+        margin-top:15px;
+        border:1px solid #333;
+    }
+
+    .button{
+        background:#7b00ff;
+        border:0;
+        padding:10px 15px;
+        border-radius:6px;
+        color:white;
+        cursor:pointer;
+    }
+
+    /* MODAL BOX */
+    .modal{
+        display:none;
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,0.8);
+        justify-content:center;
+        align-items:center;
+        padding:15px;
+    }
+
+    .modal-box{
+        background:white;
+        color:black;
+        padding:20px;
+        border-radius:10px;
+        width:95%;
+        max-width:400px;
+    }
+
+    input{
+        width:100%;
+        padding:8px;
+        margin-top:5px;
+        margin-bottom:10px;
+        border-radius:5px;
+        border:1px solid #aaa;
+    }
+
+    .close{
+        background:red;
+        color:white;
+        border:0;
+        padding:5px 10px;
+        float:right;
+        cursor:pointer;
+    }
+
+    .telegram-btn{
+        position:fixed;
+        bottom:20px;
+        right:20px;
+        background:#0088cc;
+        color:white;
+        padding:15px;
+        border-radius:50%;
+        font-size:18px;
+        text-decoration:none;
+    }
+
+</style>
+
+</head>
+<body>
+
+<header>
+    <b>Infinity Store</b>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Amazon Gift Card</h2>
+        <p>Voucher Value: ₹790</p>
+        <p>Offer Price: ₹249</p>
+        <button class="button" onclick="openModal('m1')">Buy Now</button>
+    </div>
+
+    <div class="card">
+        <h2>Flipkart Gift Card</h2>
+        <p>Voucher Value: ₹1000</p>
+        <p>Offer Price: ₹399</p>
+        <button class="button" onclick="openModal('m2')">Buy Now</button>
+    </div>
+
+</div>
+
+<!-- IDENTITY MODAL -->
+<div class="modal" id="m1">
+<div class="modal-box">
+<button class="close" onclick="closeModal('m1')">X</button>
+<h2>Verify Identity</h2>
+
+<input type="text" placeholder="Full Name">
+<input type="email" placeholder="Email">
+<input type="tel" placeholder="WhatsApp Number">
+
+<button class="button" onclick="goPayment()">Submit</button>
+</div>
+</div>
+
+<div class="modal" id="m2">
+<div class="modal-box">
+<button class="close" onclick="closeModal('m2')">X</button>
+<h2>Verify Identity</h2>
+
+<input type="text" placeholder="Full Name">
+<input type="email" placeholder="Email">
+<input type="tel" placeholder="WhatsApp Number">
+
+<button class="button" onclick="goPayment()">Submit</button>
+</div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div class="modal" id="paymentBox">
+<div class="modal-box">
+<button class="close" onclick="closeModal('paymentBox')">X</button>
+
+<h2>Complete Payment</h2>
+
+<p>UPI ID: yourupi@bank</p>
+<p>Amount: Auto Assigned</p>
+
+<img src="https://via.placeholder.com/200" width="100%" style="border-radius:10px">
+
+<br><br>
+<b>Upload Payment Proof</b>
+<input type="file">
+
+<button class="button" onclick="alert('Payment Submitted!')">
+Submit Proof
+</button>
+
+</div>
+</div>
+
+<!-- SUPPORT SECTION -->
+<div class="container">
+<div class="card">
+<h2>Support Help</h2>
+<p>If you need help, contact support.</p>
+<button class="button">Open Support</button>
+</div>
+</div>
+
+<!-- TELEGRAM FLOAT BUTTON -->
+<a href="YOUR_TELEGRAM_URL" class="telegram-btn">TG</a>
+
+<script>
+
+function openModal(id){
+    document.getElementById(id).style.display="flex";
+}
+
+function closeModal(id){
+    document.getElementById(id).style.display="none";
+}
+
+function goPayment(){
+    closeModal('m1');
+    closeModal('m2');
+    openModal('paymentBox');
+}
+
+</script>
+
+</body>
+  </html>
